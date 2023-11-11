@@ -12,11 +12,12 @@ function FormTask() {
       <div
         className="container my-5 p-4 rounded"
         style={{
-          background: "#f8f9fa", // Fondo gris claro
-          boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.2)", // Sutil sombra
+          background: "#343a40", // Fondo oscuro
+          boxShadow: "0px 0px 10px 0px rgba(255,255,255,0.2)", // Sutil sombra con color claro
+          color: "#fff", // Texto blanco para contraste
         }}
       >
-        <h1 className="text-center fw-bold text-primary mb-4">
+        <h1 className="text-center fw-bold text-ligth mb-4">
           <FontAwesomeIcon icon={faTasks} className="me-2" /> Crear Tareas
         </h1>
         <form onSubmit={handleCreateTask}>
@@ -32,6 +33,7 @@ function FormTask() {
                   name="titulo"
                   value={Formtask.titulo}
                   onChange={handleChange}
+                  style={{ background: "#454d55", color: "#fff" }} // Fondo oscuro con texto blanco
                 />
               </div>
 
@@ -45,6 +47,7 @@ function FormTask() {
                   rows="3"
                   value={Formtask.descripcion}
                   onChange={handleChange}
+                  style={{ background: "#454d55", color: "#fff" }} // Fondo oscuro con texto blanco
                 ></textarea>
               </div>
             </div>
@@ -66,4 +69,3 @@ function FormTask() {
 }
 
 export default FormTask;
-

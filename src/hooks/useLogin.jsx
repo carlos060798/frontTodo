@@ -52,7 +52,6 @@ function useLogin() {
 
       localStorage.setItem("token", data.token);
       // Autenticación exitosa
-      console.log("AUTENTICACION CORRECTA");
       setAlerta({
         msg: data.msg,
         error: false,
