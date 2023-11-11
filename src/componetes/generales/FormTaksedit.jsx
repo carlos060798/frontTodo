@@ -46,11 +46,12 @@ function EditTaskForm({ taskId, onCancelEdit }) {
     <div
       className="container my-5 p-4 rounded"
       style={{
-        background: "#f8f9fa", // Fondo gris claro
-        boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.2)", // Sutil sombra
+        background: "#343a40", // Fondo oscuro
+        boxShadow: "0px 0px 10px 0px rgba(255,255,255,0.2)", // Sutil sombra con color claro
+        color: "#fff", // Texto blanco para contraste
       }}
     >
-      <h2 className="text-center fw-bold text-primary">
+      <h2 className="text-center fw-bold ">
         <FontAwesomeIcon icon={faEdit} className="me-2" /> Editar Tarea
       </h2>
 
@@ -85,19 +86,20 @@ function EditTaskForm({ taskId, onCancelEdit }) {
             className="btn btn-primary"
             style={{ background: "#007bff", borderColor: "#007bff" }} // Fondo y borde azules
           >
-            <FontAwesomeIcon icon={faEdit} className="me-2" /> Guardar Cambios
+            <FontAwesomeIcon icon={faEdit}  /> 
           </button>
           <button
             type="button"
-            className="btn btn-secondary"
+            className="btn btn-secondary text-center"
             onClick={onCancelEdit}
           >
-            <FontAwesomeIcon icon={faTimes} className="me-2" /> Cancelar
+            <FontAwesomeIcon icon={faTimes}  /> 
           </button>
         </div>
       </form>
     </div>
   );
+
 }
 
 export default EditTaskForm;
