@@ -1,6 +1,3 @@
-import { Button, Container } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faList } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
 const Home = () => {
@@ -21,7 +18,7 @@ const Home = () => {
           <Link to="/login" className="btn btn-outline-primary">
             Inicia sesión
           </Link>
-      </div>
+        </div>
       </div>
     </section>
   );
