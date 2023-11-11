@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import  Swal  from "sweetalert2";
 
 function UseTasks() {
   const [tasks, setTasks] = useState([]);
@@ -9,11 +10,10 @@ function UseTasks() {
     usuario: "", // Asigna el ID del usuario aquí
   });
   const [alerta, setAlerta] = useState({});
+  const usuarioid = localStorage.getItem("userId");
+
 
   useEffect(() => {
-    // Obtener el valor del "userId" del localStorage
-    const usuarioid = localStorage.getItem("userId");
-
     // Actualizar el estado de Formtask con el valor de usuario del localStorage
     if (usuarioid) {
       setFormTask((prevFormTask) => ({
@@ -24,7 +24,8 @@ function UseTasks() {
 
     const getTasks = async () => {
       const userId = localStorage.getItem('userId');
-    
+
+
       axios.get(`http://localhost:4000/api/Tarea//usuario/${userId}`)
         .then((response) => {
           // Almacena las tareas del usuario en el estado
@@ -46,40 +47,40 @@ function UseTasks() {
   };
 
   const handleCreateTask = async (e) => {
-    e.preventDefault();
-
-    // Validar que no falten campos
-    if ([Formtask.titulo, Formtask.descripcion].includes("")) {
-      setAlerta({
-        msg: "Todos los campos son obligatorios",
-        error: true,
-      });
-      return;
-    }
-
     try {
-      // Llamar a la API para crear la tarea
-      const TareaResponse = await axios.post(
-        "http://localhost:4000/api/Tarea",
+      e.preventDefault();
+      if ([Formtask.titulo, Formtask.descripcion].includes("")) {
+        setAlerta({
+          msg: "Todos los campos son obligatorios",
+          error: true,
+        });
+        return;
+      }
+      const userId = localStorage.getItem('userId');
+      console.log("userId", userId);
+      const TareaResponse = await axios.post(`https://apitodos-plrl.onrender.com/api/tarea/${userId}`
+        ,
         Formtask
       );
       const { data } = TareaResponse;
-
-      // Mostrar alerta de éxito
+      
       setAlerta({
         msg: data.msg,
         error: false,
       });
-
-      // Limpiar formulario y ocultar la alerta después de 3 segundos
+      
       setTimeout(() => {
         setFormTask({
           titulo: "",
           descripcion: "",
           usuario: Formtask.usuario, // Mantén el ID del usuario
         });
-        setAlerta({});
-      }, 3000);
+        setAlerta({}); // Oculta la alerta
+      })
+       
+      
+
+ 
     } catch (error) {
       console.error("Error al Crear Tarea:", error);
       // Mostrar alerta de error
@@ -96,7 +97,7 @@ function UseTasks() {
     // Implementa la lógica para actualizar una tarea
   };
 
-  const handleDeleteTask =async (taskId) => {
+  const handleDeleteTask = async (taskId) => {
     try {
       await axios.delete(`http://localhost:4000/api/Tarea/${taskId}`);
       console.log("Tarea eliminada correctamente");
@@ -111,15 +112,15 @@ function UseTasks() {
   };
 
   const handleChangeState = async (taskId) => {
-      try {
-        await axios.patch(`http://localhost:4000/api/Tarea/${taskId}`);
-        console.log("Tarea completa correctamente");
-        // Aquí puedes realizar alguna acción adicional si lo deseas, como actualizar la lista de tareas en tu componente.
-      } catch (error) {
-        console.error("Error al completar la tarea:", error);
-      }
-    };
-  
+    try {
+      await axios.patch(`http://localhost:4000/api/Tarea/${taskId}`);
+      console.log("Tarea completa correctamente");
+      // Aquí puedes realizar alguna acción adicional si lo deseas, como actualizar la lista de tareas en tu componente.
+    } catch (error) {
+      console.error("Error al completar la tarea:", error);
+    }
+  };
+
 
   return {
     tasks,
