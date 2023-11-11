@@ -31,7 +31,7 @@ function UseTasks() {
 
     }
     getTasks();
-  }, []);
+  }, [tasks]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -91,11 +91,6 @@ function UseTasks() {
       }, 3000);
     }
   };
-
-  const handleUpdateTask = (e) => {
-    // Implementa la lógica para actualizar una tarea
-  };
-
   const handleDeleteTask = async (taskId) => {
     try {
       await axios.delete(`https://apitodos-plrl.onrender.com/api/Tarea/${taskId}`);
@@ -124,7 +119,6 @@ function UseTasks() {
     Formtask,
     handleChange,
     handleCreateTask,
-    handleUpdateTask,
     handleDeleteTask,
     handleChangeState,
     alerta,

@@ -12,7 +12,7 @@ function EditTaskForm({ taskId, onCancelEdit }) {
   useEffect(() => {
     // Realiza una solicitud para obtener los datos de la tarea por ID
     axios
-      .get(`http://localhost:4000/api/Tarea/${taskId}`)
+      .get(`https://apitodos-plrl.onrender.com/api/Tarea/${taskId}`)
       .then((response) => {
         // Almacena los datos de la tarea en el estado
         setTaskData(response.data.task);
@@ -25,7 +25,7 @@ function EditTaskForm({ taskId, onCancelEdit }) {
   const handleUpdateTask = async () => {
     try {
       // Realiza una solicitud para actualizar la tarea con los nuevos datos
-      await axios.put(`http://localhost:4000/api/Tarea/${taskId}`, taskData);
+      await axios.put(`https://apitodos-plrl.onrender.com/api/Tarea/${taskId}`, taskData);
       console.log("Tarea actualizada correctamente");
       // Cierra el formulario de edición
       onCancelEdit();
