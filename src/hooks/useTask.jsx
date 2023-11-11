@@ -21,17 +21,17 @@ function UseTasks() {
     }
 
     const getTasks = async () => {
-      try{
-      const userId = localStorage.getItem('userId');
-     const  response= await axios.get(`https://apitodos-plrl.onrender.com/api/Tarea//usuario/${userId}`)  
-      setTasks(response.data.tasks);
-      }catch(error){
+      try {
+        const userId = localStorage.getItem('userId');
+        const response = await axios.get(`https://apitodos-plrl.onrender.com/api/Tarea//usuario/${userId}`)
+        setTasks(response.data.tasks);
+      } catch (error) {
         console.error("Error al Crear Tarea:", error);
       }
 
     }
     getTasks();
-  }, []); 
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -51,8 +51,8 @@ function UseTasks() {
         });
 
         setTimeout(() => {
-          setAlerta({}); 
-        },3000)
+          setAlerta({});
+        }, 3000)
         return;
       }
       const userId = localStorage.getItem('userId');
@@ -62,12 +62,12 @@ function UseTasks() {
         Formtask
       );
       const { data } = TareaResponse;
-      
+
       setAlerta({
         msg: data.msg,
         error: false,
       });
-      
+
       setTimeout(() => {
         setFormTask({
           titulo: "",
@@ -75,11 +75,11 @@ function UseTasks() {
           usuario: Formtask.usuario, // Mantén el ID del usuario
         });
         setAlerta({}); // Oculta la alerta
-      },3000)
-       
-      
+      }, 3000)
 
- 
+
+
+
     } catch (error) {
       console.error("Error al Crear Tarea:", error);
       // Mostrar alerta de error
@@ -98,7 +98,7 @@ function UseTasks() {
 
   const handleDeleteTask = async (taskId) => {
     try {
-      await axios.delete(`http://localhost:4000/api/Tarea/${taskId}`);
+      await axios.delete(`https://apitodos-plrl.onrender.com/api/Tarea/${taskId}`);
       console.log("Tarea eliminada correctamente");
       // Aquí puedes realizar alguna acción adicional si lo deseas, como actualizar la lista de tareas en tu componente.
     } catch (error) {
@@ -106,13 +106,11 @@ function UseTasks() {
     }
   };
 
-  const handleGetTask = (e) => {
-    // Implementa la lógica para obtener las tareas
-  };
+ 
 
   const handleChangeState = async (taskId) => {
     try {
-      await axios.patch(`http://localhost:4000/api/Tarea/${taskId}`);
+      await axios.patch(`https://apitodos-plrl.onrender.com/api/Tarea/${taskId}`);
       console.log("Tarea completa correctamente");
       // Aquí puedes realizar alguna acción adicional si lo deseas, como actualizar la lista de tareas en tu componente.
     } catch (error) {
@@ -128,7 +126,6 @@ function UseTasks() {
     handleCreateTask,
     handleUpdateTask,
     handleDeleteTask,
-    handleGetTask,
     handleChangeState,
     alerta,
   };
