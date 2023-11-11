@@ -14,69 +14,64 @@ function Section() {
   } = useLogin();
 
   return (
-    <div className="container my-5">
-      <div className="row justify-content-center">
-        <div className="col-md-8 col-lg-6 text-center">
-        <h1 className="text-center"> <FontAwesomeIcon
-            icon={  faUser}
+    <div className="container my-3">
+    <div className="row justify-content-center">
+      <div className="col-md-8 col-lg-4 text-center">
+        
+        <form
+          className="p-4 p-md-5 border rounded-3 bg-dark text-light"
+          onSubmit={handleSeccion}
+        >
+          <FontAwesomeIcon
+            icon={faUser}
             className="fs-1 text-primary mb-3"
             size="4x"
-          /></h1>
-          <form
-            className="p-4 p-md-5 border rounded-3 bg-body-tertiary"
-            onSubmit={handleSeccion}
-          >
-            <div className="mb-3">
-              <label htmlFor="email" className="form-label">
-              <FontAwesomeIcon
-            icon={  faEnvelope} 
-             className="fs-1 text-primary mb-3"
-            size="2x"/>
-         
-              </label>
-              <input
-                type="email"
-                className="form-control"
-                id="email"
-                placeholder="name@example.com"
-                name="email"
-                value={DataUser.email}
-                onChange={handleChangeUser}
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="password" className="form-label">
-              <FontAwesomeIcon
-            icon={ faLock}  className="fs-1 text-primary mb-3"
-            size="2x" />
-              </label>
-              <input
-                type="password"
-                className="form-control"
-                id="password"
-                placeholder="Password"
-                name="password"
-                value={DataUser.password}
-                onChange={handleChangeUser}
-              />
-            </div>
-
-            <button className="w-100 btn btn-lg btn-primary" type="submit">
-              Ingresar
-            </button>
-            <hr className="my-4" />
-
-            <p className="mb-0">
-              ¿No tienes una cuenta?{' '}
-              <Link to="/registro" className="text-decoration-none">
-                Regístrate
-              </Link>
-            </p>
-          </form>
-          {alerta.msg && <Alerta alerta={alerta} />}
-        </div>
+          />
+          <div className="mb-3">
+            <label htmlFor="email" className="form-label ">
+              Email
+            </label>
+            <input
+              type="email"
+              className="form-control bg-dark text-light"
+              id="email"
+              placeholder="Correo electrónico"
+              name="email"
+              value={DataUser.email}
+              onChange={handleChangeUser}
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="password" className="form-label">
+              Contraseña
+            </label>
+            <input
+              type="password"
+              className="form-control bg-dark text-light"
+              id="password"
+              placeholder="Contraseña"
+              name="password"
+              value={DataUser.password}
+              onChange={handleChangeUser}
+            />
+          </div>
+  
+          <button className="w-100 btn btn-lg btn-info" type="submit">
+            Ingresar
+          </button>
+          <hr className="my-4 bg-light" />
+  
+          <p className="mb-0">
+            ¿No tienes una cuenta?{' '}
+            <Link to="/registro" className="text-decoration-none text-info">
+              Regístrate
+            </Link>
+          </p>
+        </form>
+        {alerta.msg && <Alerta alerta={alerta} />}
       </div>
     </div>
+  </div>
   );
 }
 
