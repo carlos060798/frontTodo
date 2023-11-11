@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
-    <section className="bg-ligth py-5">
-      <div className="container text-center">
+    <section className=" py-5">
+      <div className="container text-center text-light">
         <h1 className="display-4 fw-bold mb-4">Bienvenido a TaskManager</h1>
         <p className="lead mb-4">
           Organiza tus tareas de manera efectiva y aumenta tu productividad.

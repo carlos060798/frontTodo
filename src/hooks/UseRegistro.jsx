@@ -36,7 +36,7 @@ function useRegistrarUser() {
     try {
       // 1. Llamar a la API para crear el usuario
       const usuarioResponse = await axios.post(
-        "http://localhost:4000/api/Usuario",
+        "https://apitodos-plrl.onrender.com/api/usuario",
         formData
       );
       const { data } = usuarioResponse;

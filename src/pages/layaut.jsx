@@ -3,14 +3,11 @@ import Menu from "../componetes/generales/Navbar";
 
 function PageInicio() {
     return (<>
+    <div style={ {background: "black" } }
+      >
       <Menu/>
      <Outlet/>
-
-    
-   
-    
-     
-    
+     </div>   
     </>  );
 }
 
