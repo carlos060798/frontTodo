@@ -9,25 +9,21 @@ function EditTaskForm({ taskId, onCancelEdit }) {
     descripcion: "",
   });
 
-  useEffect(() => {
-    // Realiza una solicitud para obtener los datos de la tarea por ID
-    axios
-      .get(`https://apitodos-plrl.onrender.com/api/Tarea/${taskId}`)
-      .then((response) => {
-        // Almacena los datos de la tarea en el estado
-        setTaskData(response.data.task);
-      })
-      .catch((error) => {
-        console.error("Error al obtener los datos de la tarea:", error);
-      });
+  useEffect(async() => {
+    try {
+    const response= await axios.get(`https://apitodos-plrl.onrender.com/api/Tarea/${taskId}`)   
+     setTaskData(response.data.task);
+    } catch (error) {
+      console.error("Error al obtener la tarea:", error);
+    }
+     
   }, [taskId]);
 
   const handleUpdateTask = async () => {
     try {
       // Realiza una solicitud para actualizar la tarea con los nuevos datos
-      await axios.put(`https://apitodos-plrl.onrender.com/api/Tarea/${taskId}`, taskData);
-      console.log("Tarea actualizada correctamente");
-      // Cierra el formulario de edición
+     const response= await axios.put(`https://apitodos-plrl.onrender.com/api/Tarea/${taskId}`, taskData);
+      
       onCancelEdit();
     } catch (error) {
       console.error("Error al actualizar la tarea:", error);
